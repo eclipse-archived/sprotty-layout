@@ -1,0 +1,54 @@
+{
+  "name": "sprotty-elk",
+  "version": "0.4.0",
+  "description": "Integration of ELK graph layout algorithms in Sprotty",
+  "license": "EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0",
+  "keywords": [
+    "eclipse",
+    "graph",
+    "diagram",
+    "layout",
+    "sprotty"
+  ],
+  "homepage": "https://github.com/eclipse/sprotty-layout",
+  "bugs": "https://github.com/eclipse/sprotty-layout/issues",
+  "author": {
+    "name": "Eclipse Sprotty"
+  },
+  "contributors": [
+    {
+      "name": "Miro Spönemann",
+      "email": "miro.spoenemann@typefox.io",
+      "url": "http://typefox.io"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse/sprotty-layout.git"
+  },
+  "dependencies": {
+    "sprotty": "^0.4.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "jenkins-mocha": "^6.0.0",
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.3"
+  },
+  "scripts": {
+    "clean": "rimraf lib artifacts",
+    "build": "tsc -p ./tsconfig.json && yarn run lint",
+    "lint": "tslint -c ./configs/tslint.json --project ./tsconfig.json",
+    "watch": "tsc -w -p ./tsconfig.json",
+    "test": "jenkins-mocha --opts ./configs/mocha.opts \"./src/**/*.spec.?(ts|tsx)\"",
+    "prepare": "yarn run clean && yarn run build",
+    "prepublishOnly": "yarn run test"
+  },
+  "files": [
+    "lib",
+    "src"
+  ]
+}
