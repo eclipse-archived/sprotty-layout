@@ -1,12 +1,29 @@
 {
-  "extends": "./configs/base.tsconfig.json",
-  "compilerOptions": {
-    "outDir": "lib"
-  },
-  "include": [
-    "src", "typings"
-  ],
-  "exclude": [
-    "**/*.spec.ts", "**/*.spec.tsx"
-  ]
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "lib": [
+            "es6", "dom"
+        ],
+        "types": [
+            "reflect-metadata"
+        ],
+        "typeRoots": [
+            "node_modules/@types", "typings"
+        ],
+        "sourceMap": true,
+        "declaration": true,
+        "declarationMap": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "jsx": "react"
+    },
+    "include": [
+      "src", "typings"
+    ]
 }
