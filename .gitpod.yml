@@ -1,0 +1,2 @@
+tasks:
+  - command: "cd sprotty-elk && yarn install"
