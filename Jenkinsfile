@@ -11,7 +11,7 @@ spec:
 pipeline {
     agent {
         kubernetes {
-            label 'my-agent-pod'
+            label 'sprotty-layout-agent-pod'
             yaml kubernetes_config
         }
     }
