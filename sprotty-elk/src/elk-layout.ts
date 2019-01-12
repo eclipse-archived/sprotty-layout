@@ -178,7 +178,7 @@ export class ElkLayoutEngine implements IModelLayoutEngine {
             for (const elkEdge of elkNode.edges) {
                 const sedge = index.getById(elkEdge.id);
                 if (sedge && getBasicType(sedge) === 'edge') {
-                    this.applyEdge(sedge as SEdgeSchema, elkEdge);
+                    this.applyEdge(sedge as SEdgeSchema, elkEdge, index);
                 }
             }
         }
@@ -207,7 +207,7 @@ export class ElkLayoutEngine implements IModelLayoutEngine {
             sshape.size = { width: elkShape.width, height: elkShape.height };
     }
 
-    protected applyEdge(sedge: SEdgeSchema, elkEdge: ElkEdge): void {
+    protected applyEdge(sedge: SEdgeSchema, elkEdge: ElkEdge, index: SModelIndex<SModelElementSchema>): void {
         const points: Point[] = [];
         if ((elkEdge as any).sections && (elkEdge as any).sections.length > 0) {
             const section = (elkEdge as ElkExtendedEdge).sections[0];
@@ -227,6 +227,15 @@ export class ElkLayoutEngine implements IModelLayoutEngine {
                 points.push(section.targetPoint);
         }
         sedge.routingPoints = points;
+
+        if (elkEdge.labels) {
+            elkEdge.labels.forEach((elkLabel) => {
+                const sLabel = index.getById(elkLabel.id);
+                if (sLabel) {
+                    this.applyShape(sLabel, elkLabel);
+                }
+            });
+        }
     }
 
 }
