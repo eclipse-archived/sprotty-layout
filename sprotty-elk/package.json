@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "elkjs": "^0.4.1",
-    "sprotty": "^0.4.2"
+    "sprotty": "next"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
@@ -57,5 +57,7 @@
   "files": [
     "lib",
     "src"
-  ]
+  ],
+  "main": "lib/index",
+  "types": "lib/index"
 }

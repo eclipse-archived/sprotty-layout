@@ -15,7 +15,7 @@
  ********************************************************************************/
 
 import { ContainerModule } from "inversify";
-import { TYPES } from "sprotty/lib";
+import { TYPES } from "sprotty";
 import {
     ElkLayoutEngine, DefaultElementFilter, IElementFilter, DefaultLayoutConfigurator, ILayoutConfigurator
 } from './elk-layout';

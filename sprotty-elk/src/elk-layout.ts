@@ -22,7 +22,7 @@ import {
 import {
     SGraphSchema, SModelIndex, SModelElementSchema, SNodeSchema, SShapeElementSchema, SEdgeSchema,
     SLabelSchema, SPortSchema, Point, IModelLayoutEngine, getBasicType
-} from 'sprotty/lib';
+} from 'sprotty';
 
 export const ElkFactory = Symbol('ElkFactory');
 export const IElementFilter = Symbol('IElementFilter');

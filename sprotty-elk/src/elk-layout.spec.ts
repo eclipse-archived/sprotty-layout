@@ -19,7 +19,7 @@ import 'mocha';
 import { expect } from 'chai';
 import { Container } from 'inversify';
 import ElkConstructor from 'elkjs/lib/elk.bundled';
-import { SGraphSchema, SNodeSchema, SEdgeSchema } from 'sprotty/lib';
+import { SGraphSchema, SNodeSchema, SEdgeSchema } from 'sprotty';
 import { ElkFactory, ElkLayoutEngine } from './elk-layout';
 import elkLayoutModule from './di.config';
 
