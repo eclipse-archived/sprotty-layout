@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "elkjs": "^0.4.1",
-    "sprotty": "^0.6.0"
+    "sprotty": "next"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
