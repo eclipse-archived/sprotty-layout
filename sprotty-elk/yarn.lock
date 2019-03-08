@@ -2054,10 +2054,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-sprotty@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/sprotty/-/sprotty-0.6.0.tgz#1f438eedbc0b7943566e1a0ff1c8a5f5a08cb002"
-  integrity sha512-fN/QWGFHP4gC5HWADJE4+lvs+NV0BkYp9G7+Nmscg1ZsIp/55sHGtHhjntwl0K98Pwx4+jvmm2OexvrFj7jq8Q==
+sprotty@next:
+  version "0.7.0-next.5a9965c"
+  resolved "https://registry.yarnpkg.com/sprotty/-/sprotty-0.7.0-next.5a9965c.tgz#1d59c04e4366fb236a5b9d3e6d13bdb708dc1541"
+  integrity sha512-Dr6SlSXVutGQTr9W2yhSpfZr+6Hl5fAWFDlABuvdTZN+eotEXr7xhW5m/eMozgblePaYY/b4hkcRVWFU3M/LJA==
   dependencies:
     file-saver "1.3.3"
     inversify "^4.3.0"
