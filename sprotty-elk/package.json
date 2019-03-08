@@ -17,6 +17,16 @@
   },
   "contributors": [
     {
+      "name": "Jan Köhnlein",
+      "email": "jan.koehnlein@typefox.io",
+      "url": "http://typefox.io"
+    },
+    {
+      "name": "Philip Langer",
+      "email": "planger@eclipsesource.com",
+      "url": "https://www.eclipsesource.com"
+    },
+    {
       "name": "Miro Spönemann",
       "email": "miro.spoenemann@typefox.io",
       "url": "http://typefox.io"
@@ -28,7 +38,7 @@
   },
   "dependencies": {
     "elkjs": "^0.4.1",
-    "sprotty": "next"
+    "sprotty": "^0.6.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
