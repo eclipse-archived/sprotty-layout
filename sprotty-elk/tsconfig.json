@@ -5,9 +5,6 @@
         "lib": [
             "es6", "dom"
         ],
-        "types": [
-            "reflect-metadata"
-        ],
         "typeRoots": [
             "node_modules/@types", "typings"
         ],
