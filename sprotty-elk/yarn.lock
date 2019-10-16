@@ -366,10 +366,10 @@ diff@^4.0.1:
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.1.tgz#0c667cb467ebbb5cea7f14f135cc2dba7780a8ff"
   integrity sha512-s2+XdvhPCOF01LRQBC8hf4vhbVmI2CGS5aZnxLJlT5FtdhPCDFq80q++zK2KlrVorVDdL5BOGZ/VfLrVtYNF+Q==
 
-elkjs@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/elkjs/-/elkjs-0.4.1.tgz#6b42de8572fa49642e2f0c31d5e584608e47196d"
-  integrity sha512-fiVIfjlVptEaFw6QydlZWKEV80MnlNDtfiFeHcbL65i2+UaknKVhFW0VVB8YmHbaMYKNUJ/9CKlOqPmarGuZBQ==
+elkjs@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/elkjs/-/elkjs-0.5.1.tgz#906e7fddfd3b57872500c144a50042ffbc3a8f0b"
+  integrity sha512-mDyMv90x3OPmG6Y0nqOqE5f97SUdl4AkFhQHdx33hYgR978XBGywt0XOwu87qR7vcGF/ue1j+FAaAX60qB9YwQ==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -1418,10 +1418,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-sprotty@next:
-  version "0.7.0-next.3f7128d"
-  resolved "https://registry.yarnpkg.com/sprotty/-/sprotty-0.7.0-next.3f7128d.tgz#802346ea2ae7280c22f3f484374944197d706d22"
-  integrity sha512-ynJSc/F0FoLBYqxSMuN+zw74klZqURmAj/Y1vgUwup1e2VfGXBFeCZ3rwswbxgNc7eHejxFkCs1hXjcuKZgQOA==
+sprotty@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/sprotty/-/sprotty-0.7.0.tgz#8346c4ea99529a7394fd69f0692ad8293f350fd2"
+  integrity sha512-eyRBuotqQejSamcD1U8ahohUfzz4MSofFdim3i2+iZbe2dsiPC3w7W27mqoGE/1/61L1hNQMhMneD0SmIjAj/g==
   dependencies:
     autocompleter "5.1.0"
     file-saver "2.0.2"
