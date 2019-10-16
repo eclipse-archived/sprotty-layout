@@ -1,5 +1,5 @@
 tasks:
-  - command: "cd sprotty-elk && yarn install"
+  - init: "cd sprotty-elk && yarn install"
 github:
   prebuilds:
     master: true
