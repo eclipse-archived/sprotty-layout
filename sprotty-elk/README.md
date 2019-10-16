@@ -8,6 +8,8 @@ Integration of the [Eclipse Layout Kernel (ELK)](https://www.eclipse.org/elk/) w
 yarn
 ```
 
+The project is built on [jenkins.eclipse.org/sprotty](https://jenkins.eclipse.org/sprotty/).
+
 Pre-built npm packages available from [npmjs](https://www.npmjs.com/package/sprotty-elk).
 
 ## See also
