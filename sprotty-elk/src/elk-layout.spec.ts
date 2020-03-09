@@ -19,7 +19,7 @@ import 'mocha';
 import { expect } from 'chai';
 import { Container } from 'inversify';
 import ElkConstructor from 'elkjs/lib/elk.bundled';
-import { SGraphSchema, SNodeSchema, SEdgeSchema } from 'sprotty';
+import { SGraphSchema, SNodeSchema, SEdgeSchema, SPortSchema } from 'sprotty';
 import { ElkFactory, ElkLayoutEngine } from './elk-layout';
 import elkLayoutModule from './di.config';
 
@@ -31,7 +31,6 @@ describe('ElkLayoutEngine', () => {
     }));
 
     it('arranges a very simple graph', async () => {
-        const elkEngine = container.get(ElkLayoutEngine);
         const graph: SGraphSchema = {
             type: 'graph',
             id: 'graph',
@@ -55,6 +54,7 @@ describe('ElkLayoutEngine', () => {
             ]
         };
 
+        const elkEngine = container.get(ElkLayoutEngine);
         const result = await elkEngine.layout(graph);
 
         expect(result).to.deep.equal(<SGraphSchema> {
@@ -78,6 +78,91 @@ describe('ElkLayoutEngine', () => {
                     id: 'edge0',
                     sourceId: 'node0',
                     targetId: 'node1',
+                    routingPoints: [
+                        { x: 22, y: 17 },
+                        { x: 42, y: 17 }
+                    ]
+                }
+            ]
+        });
+    });
+
+    it('arranges a graph with ports', async () => {
+        const graph: SGraphSchema = {
+            type: 'graph',
+            id: 'graph',
+            children: [
+                <SNodeSchema> {
+                    type: 'node',
+                    id: 'node0',
+                    size: { width: 10, height: 10 },
+                    children: [
+                        <SPortSchema> {
+                            type: 'port',
+                            id: 'port0'
+                        }
+                    ]
+                },
+                <SNodeSchema> {
+                    type: 'node',
+                    id: 'node1',
+                    size: { width: 10, height: 10 },
+                    children: [
+                        <SPortSchema> {
+                            type: 'port',
+                            id: 'port1'
+                        }
+                    ]
+                },
+                <SEdgeSchema> {
+                    type: 'edge',
+                    id: 'edge0',
+                    sourceId: 'port0',
+                    targetId: 'port1'
+                }
+            ]
+        };
+
+        const elkEngine = container.get(ElkLayoutEngine);
+        const result = await elkEngine.layout(graph);
+
+        expect(result).to.deep.equal(<SGraphSchema> {
+            type: 'graph',
+            id: 'graph',
+            children: [
+                <SNodeSchema> {
+                    type: 'node',
+                    id: 'node0',
+                    position: { x: 12, y: 12 },
+                    size: { width: 10, height: 10 },
+                    children: [
+                        <SPortSchema> {
+                            type: 'port',
+                            id: 'port0',
+                            position: { x: 10, y: 5 },
+                            size: { height: 0, width: 0 }
+                        }
+                    ]
+                },
+                <SNodeSchema> {
+                    type: 'node',
+                    id: 'node1',
+                    position: { x: 42, y: 12 },
+                    size: { width: 10, height: 10 },
+                    children: [
+                        <SPortSchema> {
+                            type: 'port',
+                            id: 'port1',
+                            position: { x: -0, y: 5 },
+                            size: { height: 0, width: 0 }
+                        }
+                    ]
+                },
+                <SEdgeSchema> {
+                    type: 'edge',
+                    id: 'edge0',
+                    sourceId: 'port0',
+                    targetId: 'port1',
                     routingPoints: [
                         { x: 22, y: 17 },
                         { x: 42, y: 17 }

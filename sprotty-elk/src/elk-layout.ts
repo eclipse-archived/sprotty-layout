@@ -19,10 +19,13 @@ import {
     ELK, ElkNode, ElkGraphElement, ElkEdge, ElkLabel, ElkPort, ElkShape, ElkPrimitiveEdge,
     ElkExtendedEdge, LayoutOptions
 } from 'elkjs/lib/elk-api';
-import {
-    SGraphSchema, SModelIndex, SModelElementSchema, SNodeSchema, SShapeElementSchema, SEdgeSchema,
-    SLabelSchema, SPortSchema, Point, IModelLayoutEngine, getBasicType
-} from 'sprotty';
+import { SGraphSchema, SNodeSchema, SEdgeSchema, SLabelSchema, SPortSchema } from 'sprotty/lib/graph/sgraph';
+import { SModelElementSchema } from 'sprotty/lib/base/model/smodel';
+import { getBasicType } from 'sprotty/lib/base/model/smodel-utils';
+import { IModelLayoutEngine } from 'sprotty/lib/model-source/local-model-source';
+import { SShapeElementSchema } from 'sprotty/lib/features/bounds/model';
+import { Point } from 'sprotty/lib/utils/geometry';
+import { SModelIndexWithParent as SModelIndex } from './parent-index';
 
 export const ElkFactory = Symbol('ElkFactory');
 export const IElementFilter = Symbol('IElementFilter');
@@ -94,7 +97,7 @@ export class ElkLayoutEngine implements IModelLayoutEngine {
                         .map(c => this.transformToElk(c, index)) as ElkLabel[];
                     elkNode.ports = snode.children
                         .filter(c => getBasicType(c) === 'port' && this.filter.apply(c, index))
-                        .map(c => this.transformToElk(c, index)) as ElkLabel[];
+                        .map(c => this.transformToElk(c, index)) as ElkPort[];
                 }
                 this.transformShape(elkNode, snode);
                 return elkNode;
@@ -108,6 +111,22 @@ export class ElkLayoutEngine implements IModelLayoutEngine {
                     target: sedge.targetId,
                     layoutOptions: this.configurator.apply(sedge, index)
                 };
+                const sourceElement = index.getById(sedge.sourceId);
+                if (sourceElement && getBasicType(sourceElement) === 'port') {
+                    const parent = index.getParent(sourceElement.id);
+                    if (parent && getBasicType(parent) === 'node') {
+                        elkEdge.source = parent.id;
+                        elkEdge.sourcePort = sourceElement.id;
+                    }
+                }
+                const targetElement = index.getById(sedge.targetId);
+                if (targetElement && getBasicType(targetElement) === 'port') {
+                    const parent = index.getParent(targetElement.id);
+                    if (parent && getBasicType(parent) === 'node') {
+                        elkEdge.target = parent.id;
+                        elkEdge.targetPort = targetElement.id;
+                    }
+                }
                 if (sedge.children) {
                     elkEdge.labels = sedge.children
                         .filter(c => getBasicType(c) === 'label' && this.filter.apply(c, index))
