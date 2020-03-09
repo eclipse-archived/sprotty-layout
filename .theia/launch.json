@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Current Test File",
+            "protocol": "inspector",
+            "cwd": "${workspaceRoot}/sprotty-elk",
+            "program": "${workspaceRoot}/sprotty-elk/node_modules/.bin/_mocha",
+            "args": [
+                "${file}",
+                "--no-timeouts",
+                "--opts",
+                "${workspaceRoot}/sprotty-elk/configs/mocha.opts"
+            ],
+            "env": {
+                "TS_NODE_PROJECT": "${workspaceRoot}/sprotty-elk/tsconfig.json"
+            },
+            "sourceMaps": true,
+            "smartStep": true,
+            "internalConsoleOptions": "openOnSessionStart",
+            "outputCapture": "std"
+        }
+    ]
+}
