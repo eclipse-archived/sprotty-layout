@@ -186,7 +186,7 @@ export class ElkLayoutEngine implements IModelLayoutEngine {
     protected applyLayout(elkNode: ElkNode, index: SModelIndex<SModelElementSchema>): void {
         const snode = index.getById(elkNode.id);
         if (snode && getBasicType(snode) === 'node') {
-            this.applyShape(snode as SNodeSchema, elkNode);
+            this.applyShape(snode as SNodeSchema, elkNode, index);
         }
         if (elkNode.children) {
             for (const child of elkNode.children) {
@@ -201,29 +201,30 @@ export class ElkLayoutEngine implements IModelLayoutEngine {
                 }
             }
         }
-        if (elkNode.labels) {
-            for (const elkLabel of elkNode.labels) {
-                const slabel = index.getById(elkLabel.id);
-                if (slabel && getBasicType(slabel) === 'label') {
-                    this.applyShape(slabel as SLabelSchema, elkLabel);
-                }
-            }
-        }
         if (elkNode.ports) {
             for (const elkPort of elkNode.ports) {
                 const sport = index.getById(elkPort.id);
                 if (sport && getBasicType(sport) === 'port') {
-                    this.applyShape(sport as SPortSchema, elkPort);
+                    this.applyShape(sport as SPortSchema, elkPort, index);
                 }
             }
         }
     }
 
-    protected applyShape(sshape: SShapeElementSchema, elkShape: ElkShape): void {
+    protected applyShape(sshape: SShapeElementSchema, elkShape: ElkShape, index: SModelIndex<SModelElementSchema>): void {
         if (elkShape.x !== undefined && elkShape.y !== undefined)
             sshape.position = { x: elkShape.x, y: elkShape.y };
         if (elkShape.width !== undefined && elkShape.height !== undefined)
             sshape.size = { width: elkShape.width, height: elkShape.height };
+
+        if (elkShape.labels) {
+            for (const elkLabel of elkShape.labels) {
+                const slabel = index.getById(elkLabel.id);
+                if (slabel) {
+                    this.applyShape(slabel as SLabelSchema, elkLabel, index);
+                }
+            }
+        }
     }
 
     protected applyEdge(sedge: SEdgeSchema, elkEdge: ElkEdge, index: SModelIndex<SModelElementSchema>): void {
@@ -251,7 +252,7 @@ export class ElkLayoutEngine implements IModelLayoutEngine {
             elkEdge.labels.forEach((elkLabel) => {
                 const sLabel = index.getById(elkLabel.id);
                 if (sLabel) {
-                    this.applyShape(sLabel, elkLabel);
+                    this.applyShape(sLabel, elkLabel, index);
                 }
             });
         }
