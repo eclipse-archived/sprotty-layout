@@ -20,12 +20,11 @@ import {
     ElkExtendedEdge, LayoutOptions
 } from 'elkjs/lib/elk-api';
 import { SGraphSchema, SNodeSchema, SEdgeSchema, SLabelSchema, SPortSchema } from 'sprotty/lib/graph/sgraph';
-import { SModelElementSchema } from 'sprotty/lib/base/model/smodel';
+import { SModelElementSchema, SModelIndex } from 'sprotty/lib/base/model/smodel';
 import { getBasicType } from 'sprotty/lib/base/model/smodel-utils';
 import { IModelLayoutEngine } from 'sprotty/lib/model-source/local-model-source';
 import { SShapeElementSchema } from 'sprotty/lib/features/bounds/model';
 import { Point } from 'sprotty/lib/utils/geometry';
-import { SModelIndexWithParent as SModelIndex } from './parent-index';
 
 export const ElkFactory = Symbol('ElkFactory');
 export const IElementFilter = Symbol('IElementFilter');
