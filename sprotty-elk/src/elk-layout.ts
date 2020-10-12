@@ -247,6 +247,18 @@ export class ElkLayoutEngine implements IModelLayoutEngine {
         }
         sedge.routingPoints = points;
 
+        if (elkEdge.junctionPoints) {
+            sedge.children = sedge.children ?? [];
+            elkEdge.junctionPoints.forEach((jp, i) => {
+                const sJunction = <SNodeSchema> {
+                    type: 'junction',
+                    id: elkEdge.id + "_j" + i,
+                    position: jp
+                };
+                sedge.children?.push(sJunstion)
+            });
+        }
+
         if (elkEdge.labels) {
             elkEdge.labels.forEach((elkLabel) => {
                 const sLabel = index.getById(elkLabel.id);
