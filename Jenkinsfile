@@ -34,6 +34,13 @@ pipeline {
                 }
             }
         }
+        
+      stage('Deploy (master only)') {
+            when { branch 'master'}
+            steps {
+                build job: 'deploy-sprotty-layout', wait: false
+            }
+        }
     }
 
     post {
