@@ -42,8 +42,8 @@ pipeline {
             steps {
                 container('node') {
                     dir('sprotty-elk') {
-                        sh "yarn ${env.YARN_ARGS} install"
-                        sh "yarn ${env.YARN_ARGS} test || true" // Ignore test failures
+                        sh "yarn install"
+                        sh "yarn test || true" // Ignore test failures
                     }
                 }
             }
