@@ -4,8 +4,22 @@ kind: Pod
 spec:
   containers:
   - name: node
-    image: node:8.12
+    image: node:12.18.3
     tty: true
+    resources:
+      limits:
+        memory: "2Gi"
+        cpu: "1"
+      requests:
+        memory: "2Gi"
+        cpu: "1"
+    volumeMounts:
+    - mountPath: "/.yarn"
+      name: "yarn-global"
+      readonly: false
+  volumes:
+  - name: "yarn-global"
+    emptyDir: {}
 """
 
 pipeline {
@@ -22,8 +36,8 @@ pipeline {
     stages {
         stage('Build sprotty-elk') {
             environment {
+                YARN_CACHE_FOLDER = "${env.WORKSPACE}/yarn-cache"
                 SPAWN_WRAP_SHIM_ROOT = "${env.WORKSPACE}"
-                YARN_ARGS = "--cache-folder ${env.WORKSPACE}/yarn-cache --global-folder ${env.WORKSPACE}/yarn-global"
             }
             steps {
                 container('node') {
@@ -35,7 +49,7 @@ pipeline {
             }
         }
         
-      stage('Deploy (master only)') {
+        stage('Deploy (master only)') {
             when { branch 'master'}
             steps {
                 build job: 'deploy-sprotty-layout', wait: false
